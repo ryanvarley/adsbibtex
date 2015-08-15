@@ -1,0 +1,9 @@
+# YAML front matter
+cache_length: 24              # hours, 3d = 72, 1w=168, 2w=336
+cache_db:     adsbibtex.cache # location to store cached entries
+bibtex_file:  test.tex        # location to output bibtex file
+---
+# Bibcode Name # Comment
+2008Natur.452..329S Swain2008   # The presence of methane in the atmosphere of an extrasolar planet
+2006DPS....38.0102T Tinetti2006 # Transmission Spectra Of Extrasolar Giant Planets In The Mid-ir
+2006AGUSM.A21A..06T # no name
