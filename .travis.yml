@@ -1,0 +1,15 @@
+language: python
+sudo: false
+
+install:
+  - pip install -r requirements.txt
+  - pip install coveralls
+
+python:
+  - "2.7"
+
+script:
+  - coverage run --source=adsbibtex setup.py test
+
+after_success:
+  coveralls

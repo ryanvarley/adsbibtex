@@ -3,7 +3,7 @@ import unittest
 from hypothesis import given, assume
 from hypothesis.strategies import text
 
-import adsbibtex
+from .. import adsbibtex
 
 
 class Test_parse_config_file(unittest.TestCase):
