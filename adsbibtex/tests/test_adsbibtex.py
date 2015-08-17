@@ -9,8 +9,8 @@ from .. import adsbibtex
 class Test_parse_config_file(unittest.TestCase):
     def test_parses_correct_file(self):
         document_list = ["# YAML front matter\n",
-                         "cache_length: 24\n",
-                         "cache_db:     adsbibtex.cache\n",
+                         "cache_ttl: 24\n",
+                         "cache_file:     adsbibtex.cache\n",
                          "bibtex_file:  test.tex",
                          "---\n",
                          "# Bibcode Name # Comment\n",

@@ -5,6 +5,7 @@ import yaml
 import re
 
 import query_ads
+import adsbibtex_cache
 
 
 def run_adsbibtex(config_file):
@@ -15,9 +16,17 @@ def run_adsbibtex(config_file):
 
     bibcode_list = parse_bibcode_lines(bibcode_lines)
 
+    cache = adsbibtex_cache.load_cache(config['cache_file'])
+    cache_ttl = config['cache_ttl'] * 3600  # to seconds
+
     for bibcode_entry in bibcode_list:
-        # TODO (ryan) check cache
-        bibtex = query_ads.bibcode_to_bibtex(bibcode_entry['bibcode'])
+        bibcode = bibcode_entry['bibcode']
+        try:
+            bibtex = adsbibtex_cache.read_key(cache, bibcode, cache_ttl)
+        except KeyError:  # bibcode not cached or old
+            bibtex = query_ads.bibcode_to_bibtex(bibcode)
+            adsbibtex_cache.save_key(cache, bibcode, bibtex)
+
         bibcode_entry['bibtex'] = bibtex
 
     bibtex_ouput = generate_bibtex_output(bibcode_list)
