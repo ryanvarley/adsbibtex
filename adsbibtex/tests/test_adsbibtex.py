@@ -9,12 +9,12 @@ from .. import adsbibtex
 class Test_parse_config_file(unittest.TestCase):
     def test_parses_correct_file(self):
         document_list = ["# YAML front matter\n",
-                         "cache_length: 24",
-                         "cache_db:     adsbibtex.cache",
+                         "cache_length: 24\n",
+                         "cache_db:     adsbibtex.cache\n",
                          "bibtex_file:  test.tex",
                          "---\n",
                          "# Bibcode Name # Comment\n",
-                         "2008Natur.452..329S Swain2008",
+                         "2008Natur.452..329S Swain2008\n",
                          "2006AGUSM.A21A..06T # no name\n",
                          ]
 
@@ -50,15 +50,15 @@ class Test_parse_bibcode_lines(unittest.TestCase):
                         "2015ExA...tmp....5V  Varley2015 # hi"  # double spaced gap
                         ]
 
-        bibcode_dict = adsbibtex.parse_bibcode_lines(bibcode_list)
+        bibcode_list = adsbibtex.parse_bibcode_lines(bibcode_list)
 
-        bibcode_dict_answer = {'Swain2008': {'bibcode': '2008Natur.452..329S'},
-                               '2006AGUSM.A21A..06T': {'bibcode': '2006AGUSM.A21A..06T'},
-                               '2013ApJ...766....7W': {'bibcode': '2013ApJ...766....7W'},
-                               'Varley2015': {'bibcode': '2015ExA...tmp....5V'},
-                               }
+        bibcode_list_answer = [{'cite_name': 'Swain2008',           'bibcode': '2008Natur.452..329S'},
+                               {'cite_name': '2006AGUSM.A21A..06T', 'bibcode': '2006AGUSM.A21A..06T'},
+                               {'cite_name': '2013ApJ...766....7W', 'bibcode': '2013ApJ...766....7W'},
+                               {'cite_name': 'Varley2015',          'bibcode': '2015ExA...tmp....5V'},
+                               ]
 
-        self.assertEqual(bibcode_dict, bibcode_dict_answer)
+        self.assertEqual(bibcode_list, bibcode_list_answer)
 
 
 class Test_parse_bibcode_line(unittest.TestCase):

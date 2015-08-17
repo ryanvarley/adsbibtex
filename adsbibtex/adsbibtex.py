@@ -4,13 +4,20 @@
 import yaml
 import re
 
+import query_ads
+
 
 def run_adsbibtex(config_file):
     config_document = load_config_file(config_file)
     yaml_front_matter, bibcode_lines = parse_config_file(config_document)
 
     config = parse_yaml_front_matter(yaml_front_matter)
-    print yaml_front_matter, bibcode_lines
+
+    bibcode_list = parse_bibcode_lines(bibcode_lines)
+
+    for bibcode_entry in bibcode_list:
+        bibtex = query_ads.bibcode_to_bibtex(bibcode_entry['bibcode'])
+        print bibtex
 
 
 def load_config_file(config_file):
@@ -72,22 +79,23 @@ def parse_yaml_front_matter(yaml_front_matter):
 
 
 def parse_bibcode_lines(bibcode_lines):
-    """ Cleans up the bibcode line list, removing comments and returning a dict of "cite_name": {"bibcode": bibcode} pairs
+    """ Cleans up the bibcode line list, removing comments and returning a list of
+    {"cite_name": cite_name, "bibcode": bibcode} pairs
 
     :param bibcode_lines: lists of bibcode lines
     :return:
     """
 
-    bibcode_dict = {}
+    bibcode_list = []
 
     for bibcode_line in bibcode_lines:
         try:
             cite_name, bibcode = parse_bibcode_line(bibcode_line)
-            bibcode_dict[cite_name] = {'bibcode': bibcode}
+            bibcode_list.append({'cite_name': cite_name, 'bibcode': bibcode})
         except TypeError:  # None was returned
             pass
 
-    return bibcode_dict
+    return bibcode_list
 
 
 def parse_bibcode_line(bibcode_line):
