@@ -4,6 +4,21 @@
 
 Builds a bibtex file for a LaTeX document using by querying a list of bibcodes with NASA ADS
 
+## Why?
+
+Two reasons
+
+1. If you cite a preprint paper, this will automatically update the entry to the published version, when it is
+2. For really long bibtex files, its much easier to manage a list of bibcodes than bibtex entries, and you can divide
+ them into sections with comments i.e.
+    
+    # Transmission Spectroscopy
+    2008Natur.452..329S  Swain2008  # The presence of methane in the atmosphere of an extrasolar planet
+    2006AGUSM.A21A..06T  Tinetti2006
+    
+    # Detrending Techniques
+    2013ApJ...766....7W  Waldmann2013
+
 ## Setup and installation
 You'll need the latest version of the ads module in python from [here](https://github.com/adsabs/adsabs-dev-api)
 
@@ -27,4 +42,24 @@ or with
 
 ## Usage
 
-TODO (not finalised yet)
+    adsbibtex <config_file>
+    
+config_file defaults to `config.adsbib`, see next section for example file
+
+## Example config file
+
+The config file consists of a top section of `yaml` where the config is stored and a list of bibcode citename entries
+(after `---`). Comments can be entered with `#`.
+
+All entries must have a valid bibcode, if no citename is given then the bibcode will be the citename
+
+    cache_ttl:   24  # hours
+    cache_file:  adsbibtex_cache
+    bibtex_file: test.tex
+    ---
+    #   Bibcode         Name      # Optional Comment
+    2008Natur.452..329S Swain2008
+    2006AGUSM.A21A..06T # no name needed
+    2013ApJ...766....7W  Waldmann2013  # You could put the paper title or subject here
+    
+

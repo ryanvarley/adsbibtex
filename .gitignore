@@ -58,3 +58,4 @@ target/
 tests/.hypothesis
 .hypothesis
 *.db
+*.tex

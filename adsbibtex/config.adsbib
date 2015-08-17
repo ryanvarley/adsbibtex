@@ -1,8 +1,0 @@
-# YAML front matter
-cache_ttl:   24  # hours
-cache_file:  adsbibtex_cache
-bibtex_file: test.tex
----
-# Bibcode Name # Comment
-2008Natur.452..329S Swain2008
-2006AGUSM.A21A..06T # no name

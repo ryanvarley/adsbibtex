@@ -36,10 +36,10 @@ setup(
     long_description=long_description,
     url='https://github.com/ryanvarley/adsbibtex',
     author='Ryan Varley',
-    author_email='oecpy@ryanvarley.uk',
+    author_email='ryan@ryanvarley.uk',
     license='MIT',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
 
         'Intended Audience :: Science/Research',
         'Topic :: Scientific/Engineering :: Astronomy',
@@ -47,6 +47,12 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2.7',
     ],
+
+    entry_points={
+        'console_scripts': [
+            'adsbibtex = adsbibtex.bibcode_to_bibtex:run',
+        ],
+    },
 
     # What does your project relate to?
     # keywords='sample setuptools development',
