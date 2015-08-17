@@ -1,4 +1,4 @@
 nose
 hypothesis
 docopt
-ads='0.0.809'
+ads
