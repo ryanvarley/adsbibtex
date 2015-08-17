@@ -16,8 +16,13 @@ def run_adsbibtex(config_file):
     bibcode_list = parse_bibcode_lines(bibcode_lines)
 
     for bibcode_entry in bibcode_list:
+        # TODO (ryan) check cache
         bibtex = query_ads.bibcode_to_bibtex(bibcode_entry['bibcode'])
-        print bibtex
+        bibcode_entry['bibtex'] = bibtex
+
+    bibtex_ouput = generate_bibtex_output(bibcode_list)
+
+    save_bibtex_output(bibtex_ouput, out_path=config['bibtex_file'])
 
 
 def load_config_file(config_file):
@@ -139,6 +144,37 @@ def is_comment(s):
         return True
     else:
         return False
+
+
+def replace_bibtex_cite_name(bibtex, current_name, new_name):
+    """replaces the cite_name in a bibtex file with something else
+
+    :param: string of bibtex to do the replacing on
+    :param current_name: current cite name in the bibtex
+    :param new_name: name to replace it with
+    """
+
+    new_bibtex = bibtex.replace(current_name, new_name, 1)
+
+    return new_bibtex
+
+
+def generate_bibtex_output(bibcode_list):
+        output = []
+        for bibcode_item in bibcode_list:
+            bibtex = bibcode_item['bibtex']
+            bibcode = bibcode_item['bibcode']
+            cite_name = bibcode_item['cite_name']
+
+            new_bibtex = replace_bibtex_cite_name(bibtex, bibcode, cite_name)
+            output.append(new_bibtex)
+
+        return '\n'.join(output)
+
+
+def save_bibtex_output(bibtex_output, out_path):
+    with open(out_path, 'w') as f:
+        f.write(bibtex_output)
 
 
 class ADSBibtexBaseException(Exception):

@@ -18,6 +18,6 @@ def bibcode_to_bibtex(bibcode):
     if len(papers) == 1:  # 0 failed, 2 is ambiguous
         return papers[0].bibtex
 
-    print bibcode, len(papers)
 
-    print 'failed :-('
+
+    print '{} failed :-('.format(bibcode)
