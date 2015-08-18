@@ -3,6 +3,7 @@
 
 import ads
 
+import adsbibtex_exceptions
 
 try:  # Temp version patch for ads module
     ads.SearchQuery
@@ -17,13 +18,14 @@ def bibcode_to_bibtex(bibcode):
     :return:
     """
 
-    query_result = ads.SearchQuery(bibcode=bibcode)
+    query_result = ads.SearchQuery(bibcode=bibcode, rows=1)
 
     papers = list(query_result)
 
     if len(papers) == 1:  # 0 failed, 2 is ambiguous
-        return papers[0].bibtex
+        try:
+            return papers[0].bibtex
+        except ads.exceptions.APIResponseError as e:
+            raise e  # TODO (ryan) provide rate limit info
 
-
-
-    print '{} failed :-('.format(bibcode)
+    raise adsbibtex_exceptions.ADSBibtexBibcodeNotFound

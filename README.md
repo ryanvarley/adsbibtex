@@ -21,7 +21,7 @@ Two main reasons
 2013ApJ...766....7W  Waldmann2013
 ```
 
-It is also fast, entries are cached so they are only fetched from ADS again after they are older than your ttl (time to live) setting in the config. This means you can integrate it into your latex compilation without worrying about it adding a significant overhead to your build.
+It is also fast after the initial run, entries are cached so they are only fetched from ADS again after they are older than your ttl (time to live) setting in the config. This means you can integrate it into your latex compilation without worrying about it adding a significant overhead to your build.
 
 ## Setup and installation
 

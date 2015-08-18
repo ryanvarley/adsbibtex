@@ -6,6 +6,7 @@ import re
 
 import query_ads
 import adsbibtex_cache
+import adsbibtex_exceptions
 
 
 def run_adsbibtex(config_file):
@@ -19,15 +20,23 @@ def run_adsbibtex(config_file):
     cache = adsbibtex_cache.load_cache(config['cache_file'])
     cache_ttl = config['cache_ttl'] * 3600  # to seconds
 
-    for bibcode_entry in bibcode_list:
+    for i, bibcode_entry in enumerate(bibcode_list):
         bibcode = bibcode_entry['bibcode']
         try:
             bibtex = adsbibtex_cache.read_key(cache, bibcode, cache_ttl)
+            print '{} successfully fetched from cache'.format(bibcode)
         except KeyError:  # bibcode not cached or old
-            bibtex = query_ads.bibcode_to_bibtex(bibcode)
-            adsbibtex_cache.save_key(cache, bibcode, bibtex)
+            try:
+                bibtex = query_ads.bibcode_to_bibtex(bibcode)
+                adsbibtex_cache.save_key(cache, bibcode, bibtex)
+                print '{} successfully fetched from ADS'.format(bibcode)
+            except adsbibtex_exceptions.ADSBibtexBibcodeNotFound:
+                print '{} not found on ADS, skipping'.format(bibcode)
+                continue
 
         bibcode_entry['bibtex'] = bibtex
+
+    cache.close()
 
     bibtex_ouput = generate_bibtex_output(bibcode_list)
 
@@ -68,7 +77,7 @@ def parse_config_file(config_document):
             yaml_front_matter.append(line)
 
     if not yaml_front_matter_found:
-        raise ADSBibtexConfigError("YAML Front matter not found")
+        raise adsbibtex_exceptions.ADSBibtexConfigError("YAML Front matter not found")
 
     yaml_front_matter = ''.join(yaml_front_matter)
 
@@ -171,11 +180,15 @@ def replace_bibtex_cite_name(bibtex, current_name, new_name):
 def generate_bibtex_output(bibcode_list):
         output = []
         for bibcode_item in bibcode_list:
-            bibtex = bibcode_item['bibtex']
+            try:
+                bibtex = bibcode_item['bibtex']
+            except KeyError:  # Bibcode not found
+                continue
+
             bibcode = bibcode_item['bibcode']
             cite_name = bibcode_item['cite_name']
-
             new_bibtex = replace_bibtex_cite_name(bibtex, bibcode, cite_name)
+
             output.append(new_bibtex)
 
         return ''.join(output)
@@ -184,13 +197,3 @@ def generate_bibtex_output(bibcode_list):
 def save_bibtex_output(bibtex_output, out_path):
     with open(out_path, 'w') as f:
         f.write(bibtex_output)
-
-
-class ADSBibtexBaseException(Exception):
-    pass
-
-
-class ADSBibtexConfigError(ADSBibtexBaseException):
-    pass
-
-
