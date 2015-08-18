@@ -64,7 +64,7 @@ All entries must have a valid bibcode, if no citename is given then the bibcode 
 # YAML front matter (config)
 cache_ttl:   24  # hours
 cache_file:  adsbibtex_cache
-bibtex_file: example.tex
+bibtex_file: example.bib
 ---
 #   Bibcode          Name          # Optional Comment
 2008Natur.452..329S  Swain2008
