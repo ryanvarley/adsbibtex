@@ -178,7 +178,7 @@ def generate_bibtex_output(bibcode_list):
             new_bibtex = replace_bibtex_cite_name(bibtex, bibcode, cite_name)
             output.append(new_bibtex)
 
-        return '\n'.join(output)
+        return ''.join(output)
 
 
 def save_bibtex_output(bibtex_output, out_path):

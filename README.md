@@ -73,3 +73,52 @@ bibtex_file: example.tex
 # You can use comments to divide papers into sections
 2013ApJ...766....7W  Waldmann2013  # You could put the paper title or subject here
 ```
+
+Running `adsbibtex` on this file produces the following output
+
+```bibtex
+@ARTICLE{Swain2008,
+   author = {{Swain}, M.~R. and {Vasisht}, G. and {Tinetti}, G.},
+    title = "{The presence of methane in the atmosphere of an extrasolar planet}",
+  journal = {\nat},
+     year = 2008,
+    month = mar,
+   volume = 452,
+    pages = {329-331},
+      doi = {10.1038/nature06823},
+   adsurl = {http://adsabs.harvard.edu/abs/2008Natur.452..329S},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{2006AGUSM.A21A..06T,
+   author = {{Tinetti}, G. and {Meadows}, V.~S. and {Crisp}, D. and {Kiang}, N. and 
+	{Fishbein}, E. and {Kahn}, B. and {Turnbull}, M.},
+    title = "{Detectability of Surface and Atmospheric Signatures in the Disk-averaged Spectra of the Earth}",
+  journal = {AGU Spring Meeting Abstracts},
+ keywords = {5210 Planetary atmospheres, clouds, and hazes (0343), 5704 Atmospheres (0343, 1060), 0343 Planetary atmospheres (5210, 5405, 5704), 0406 Astrobiology and extraterrestrial materials},
+     year = 2006,
+    month = may,
+    pages = {A6},
+   adsurl = {http://adsabs.harvard.edu/abs/2006AGUSM.A21A..06T},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Waldmann2013,
+   author = {{Waldmann}, I.~P. and {Tinetti}, G. and {Deroo}, P. and {Hollis}, M.~D.~J. and 
+	{Yurchenko}, S.~N. and {Tennyson}, J.},
+    title = "{Blind Extraction of an Exoplanetary Spectrum through Independent Component Analysis}",
+  journal = {\apj},
+archivePrefix = "arXiv",
+   eprint = {1301.4041},
+ primaryClass = "astro-ph.EP",
+ keywords = {methods: data analysis, methods: observational, methods: statistical, planets and satellites: atmospheres, planets and satellites: individual: HD189733b, techniques: spectroscopic },
+     year = 2013,
+    month = mar,
+   volume = 766,
+      eid = {7},
+    pages = {7},
+      doi = {10.1088/0004-637X/766/1/7},
+   adsurl = {http://adsabs.harvard.edu/abs/2013ApJ...766....7W},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+```
