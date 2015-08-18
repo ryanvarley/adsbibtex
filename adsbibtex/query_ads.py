@@ -4,6 +4,12 @@
 import ads
 
 
+try:  # Temp version patch for ads module
+    ads.SearchQuery
+except AttributeError:
+    ads.SearchQuery = ads.query
+
+
 def bibcode_to_bibtex(bibcode):
     """ queries ads
 

@@ -24,19 +24,19 @@ Two main reasons
 It is also fast, entries are cached so they are only fetched from ADS again after they are older than your ttl (time to live) setting in the config. This means you can integrate it into your latex compilation without worrying about it adding a significant overhead to your build.
 
 ## Setup and installation
-You'll need the latest version of the ads module in python from [here](https://github.com/adsabs/adsabs-dev-api)
 
-to install
+You'll need an ADS API key, the following is from the `ads` [module docs](https://github.com/andycasey/ads)
+
+1. You'll need an API key from NASA ADS labs. Sign up for the newest version of ADS search at https://ui.adsabs.harvard.edu, visit account settings and generate a new API token. The official documentation is available at https://github.com/adsabs/adsabs-dev-api
+2. When you get your API key, save it to a file called ``~/.ads/dev_key`` or save it as an environment variable named ``ADS_DEV_KEY``
+
+Then install this package
 
 ```bash
-git clone https://github.com/adsabs/adsabs-dev-api.git
-cd adsabs-dev-api
-python setup.py install
+pip install adsbibtex
 ```
 
-And you'll need an ADS API key, read the **getting started** section [here](https://github.com/adsabs/adsabs-dev-api)
-
-Then install this package from here
+or get the latest development version from here with
 
 ```bash
 git clone https://github.com/ryanvarley/adsbibtex.git
@@ -44,11 +44,6 @@ cd adsabs-dev-api
 python setup.py install
 ```
 
-or with
-
-```bash
-pip install adsbibtex
-```
 
 ## Usage
 
