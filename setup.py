@@ -2,7 +2,6 @@ from setuptools import setup
 import codecs
 import os
 import re
-import multiprocessing  # stops exit fail on setup.py test
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -27,7 +26,7 @@ def find_version(*file_paths):
 with codecs.open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
-install_requires = ['nose>=1.0']
+install_requires = ['nose>=1.0', 'hypothesis', 'docopt', 'ads']
 
 setup(
     name="ADSBibTeX",
@@ -40,12 +39,14 @@ setup(
     license='MIT',
     classifiers=[
         'Development Status :: 4 - Beta',
-
+        'Environment :: MacOS X',
+        'Intended Audience :: Education',
         'Intended Audience :: Science/Research',
-        'Topic :: Scientific/Engineering :: Astronomy',
-
         'License :: OSI Approved :: MIT License',
+        'Natural Language :: English',
+        'Operating System :: MacOS',
         'Programming Language :: Python :: 2.7',
+        'Topic :: Scientific/Engineering :: Astronomy',
     ],
 
     entry_points={

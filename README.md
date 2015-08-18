@@ -78,4 +78,3 @@ bibtex_file: example.tex
 # You can use comments to divide papers into sections
 2013ApJ...766....7W  Waldmann2013  # You could put the paper title or subject here
 ```
-
