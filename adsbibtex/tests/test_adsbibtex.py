@@ -4,6 +4,7 @@ from hypothesis import given, assume
 from hypothesis.strategies import text
 
 from .. import adsbibtex
+from .. import adsbibtex_exceptions
 
 
 class Test_parse_config_file(unittest.TestCase):
@@ -29,13 +30,13 @@ class Test_parse_config_file(unittest.TestCase):
     def test_raises_ADSBibtexConfigError_if_yaml_missing(self):
         document_list = ["cache_length: 24", "2006AGUSM.A21A..06T # no name\n"]
 
-        with self.assertRaises(adsbibtex.ADSBibtexConfigError):
+        with self.assertRaises(adsbibtex_exceptions.ADSBibtexConfigError):
             adsbibtex.parse_config_file(document_list)
 
     def test_raises_ADSBibtexConfigError_if_empty(self):
         document_list = []
 
-        with self.assertRaises(adsbibtex.ADSBibtexConfigError):
+        with self.assertRaises(adsbibtex_exceptions.ADSBibtexConfigError):
             adsbibtex.parse_config_file(document_list)
 
 
