@@ -40,7 +40,7 @@ or get the latest development version from here with
 
 ```bash
 git clone https://github.com/ryanvarley/adsbibtex.git
-cd adsabs-dev-api
+cd adsbibtex
 python setup.py install
 ```
 
