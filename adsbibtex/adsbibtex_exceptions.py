@@ -4,7 +4,3 @@ class ADSBibtexBaseException(Exception):
 
 class ADSBibtexConfigError(ADSBibtexBaseException):
     pass
-
-
-class ADSBibtexBibcodeNotFound(ADSBibtexBaseException):
-    pass
