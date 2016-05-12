@@ -1,0 +1,10 @@
+cache_ttl:   168              # hours, 3d = 72, 1w=168, 2w=336
+cache_file:  adsbibtex.cache  # location to store cached entries
+bibtex_file: example.bib      # location to output bibtex file
+---
+#   Bibcode          Name          # Optional Comment
+2008Natur.452..329S  Swain2008
+2006AGUSM.A21A..06T                # no name needed
+
+# You can use comments to divide papers into sections
+2013ApJ...766....7W  Waldmann2013  # You could put the paper title or subject here

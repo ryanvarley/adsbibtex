@@ -61,10 +61,9 @@ The config file consists of a top section of `yaml` where the config is stored a
 All entries must have a valid bibcode, if no citename is given then the bibcode will be the citename
 
 ```bash
-# YAML front matter (config)
-cache_ttl:   24  # hours
-cache_file:  adsbibtex_cache
-bibtex_file: example.bib
+cache_ttl:   168              # hours, 3d = 72, 1w=168, 2w=336
+cache_file:  adsbibtex.cache  # location to store cached entries
+bibtex_file: example.bib      # location to output bibtex file
 ---
 #   Bibcode          Name          # Optional Comment
 2008Natur.452..329S  Swain2008
