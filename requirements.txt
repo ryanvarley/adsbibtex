@@ -2,3 +2,4 @@ nose
 hypothesis
 docopt
 ads
+pyyaml
